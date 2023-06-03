@@ -1,0 +1,59 @@
+<mat-table [dataSource]="tableData">
+
+    <!-- Columna de ID -->
+    <ng-container matColumnDef="id_login">
+      <mat-header-cell *matHeaderCellDef> Id Login </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id_login}} </mat-cell>
+    </ng-container>
+  
+    <!-- Columna de Nombre -->
+    <ng-container matColumnDef="correo">
+      <mat-header-cell *matHeaderCellDef> Correo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.correo}} </mat-cell>
+    </ng-container>
+  
+    <!-- Columna de Correo Electrónico -->
+    <ng-container matColumnDef="productor">
+      <mat-header-cell *matHeaderCellDef> Productor </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.productor}} </mat-cell>
+    </ng-container>
+  
+    <!-- Columna de Teléfono -->
+    <ng-container matColumnDef="nombres">
+      <mat-header-cell *matHeaderCellDef> Nombres </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nombres}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="apellidos">
+      <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.apellidos}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="telefono">
+      <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.telefono}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha_ingreso">
+      <mat-header-cell *matHeaderCellDef> Fecha ingreso </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.fecha_ingreso | date: 'dd/MM/yyyy HH:mm'}} </mat-cell>
+    </ng-container>
+  
+    <!-- Columna de Acciones -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button color="success" (click)="activar_cuenta(element.id_login)">
+          <mat-icon>done</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="desactivar_cuenta(element.id_login)" >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+  </mat-table>
+  

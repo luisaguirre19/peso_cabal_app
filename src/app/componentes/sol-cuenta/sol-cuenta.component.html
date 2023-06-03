@@ -1,0 +1,83 @@
+<mat-form-field>
+  <input
+    matInput
+    placeholder="Identificador Envío"
+    [(ngModel)]="identificadorEnvio"
+    name="identificadorEnvio"
+  />
+</mat-form-field>
+
+<mat-form-field>
+  <input
+    matInput
+    type="number"
+    placeholder="Peso en libras:"
+    [(ngModel)]="cantPeso"
+    name="cantPeso"
+  />
+</mat-form-field>
+
+<mat-form-field>
+  <input matInput placeholder="Usuario" [(ngModel)]="usuario" name="usuario" />
+</mat-form-field>
+
+<button mat-raised-button (click)="submit()">Enviar</button>
+
+<mat-table [dataSource]="tableData">
+  <!-- Columna de ID -->
+  <ng-container matColumnDef="id_peso">
+    <mat-header-cell *matHeaderCellDef> Id Peso </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.id_peso }} </mat-cell>
+  </ng-container>
+
+  <!-- Columna de Nombre -->
+  <ng-container matColumnDef="identificador_envio">
+    <mat-header-cell *matHeaderCellDef> Identificador Envio </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.identificador_envio }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Columna de Nombre -->
+  <ng-container matColumnDef="cant_peso">
+    <mat-header-cell *matHeaderCellDef> Peso </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.cant_peso }} </mat-cell>
+  </ng-container>
+
+  <!-- Columna de Correo Electrónico -->
+  <ng-container matColumnDef="usuario">
+    <mat-header-cell *matHeaderCellDef> Usuario </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.usuario }} </mat-cell>
+  </ng-container>
+
+  <!-- Columna de Correo Electrónico -->
+  <ng-container matColumnDef="fecha">
+    <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.fecha }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="detalle">
+    <mat-header-cell *matHeaderCellDef> Imprimir </mat-header-cell>
+    <mat-cell *matCellDef="let element"> 
+      <button mat-icon-button color="success" (click)="generatePDF(element.identificador_envio, element.cant_peso, element.fecha,element.id_peso  )">
+        <mat-icon>visibility</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Columna de Acciones -->
+  <!-- <ng-container matColumnDef="Estado">
+      <mat-header-cell *matHeaderCellDef> estado </mat-header-cell>
+      <mat-cell *matCellDef="let element"> -->
+  <!-- <button mat-icon-button color="success" (click)="a(element.id_login)">
+          <mat-icon>done</mat-icon>
+        </button> -->
+  <!-- <button mat-icon-button color="warn" (click)="eliminar_vehiculo(element.id_transporte)" >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container> -->
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

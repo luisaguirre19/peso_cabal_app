@@ -1,0 +1,31 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-title class="login-card-title">El pesaje mas exacto de Guatemala</mat-card-title>
+    <mat-card-title class="login-card-title1"><b>PESO CABAL</b></mat-card-title>
+    <mat-card-content >
+      <mat-form-field class="card-c">
+        <input matInput placeholder="Correo:" type="mail"  [(ngModel)]="username">
+      </mat-form-field>
+      <div>
+        <mat-form-field class="card-c">
+          <input matInput placeholder="Contraseña" type="password" [(ngModel)]="password">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <!-- <mat-card-actions> -->
+      <button mat-flat-button color="basic" (click)="onSubmit()">Ingresar</button>
+    
+    <!-- </mat-card-actions> -->
+  </mat-card>
+  
+
+  <mat-progress-spinner *ngIf="loading" mode="indeterminate" color="accent" diameter="50" strokeWidth="5">
+    <ng-template #spinnerContent>
+      <div class="spinner-message">Cargando datos...</div>
+    </ng-template>
+  </mat-progress-spinner>
+  
+  
+  
+</div>
+
