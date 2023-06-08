@@ -42,23 +42,35 @@ export class SolCuentaComponent {
 
   submit() {
     this.sqlService
-      .postData_peso('INSERTARPESO', {
-        p_identificadorEnvio: this.identificadorEnvio,
-        p_cantPeso: this.cantPeso,
-        p_usuario: this.usuario,
-      })
-      .subscribe((data) => {
-        // this.sqlService.postData_beneficio("cuenta",{
-        //     "etiqueta":this.etiqueta,
-        //     "peso":this.peso,
-        //     "parcialidades":this.parcialidad,
-        //     "correo":this.authService.correo_usuario,
-        //     "id_solicitud_prod":data[0].resp
-        // })
-        // .subscribe(data=>{
-        this.traer_datos();
-        //})
+    .postData('valida_peso', {
+      p_identificadorEnvio: this.identificadorEnvio
+    })
+    .subscribe((data) => {
+      if(data[0].resp == 'Si'){
+          this.sqlService
+          .postData_peso('INSERTARPESO', {
+            p_identificadorEnvio: this.identificadorEnvio,
+            p_cantPeso: this.cantPeso,
+            p_usuario: this.usuario,
+          })
+          .subscribe((data) => {
+              this.sqlService
+              .postData('inserta_peso', {
+                p_identificadorEnvio: this.identificadorEnvio,
+                p_cantPeso: this.cantPeso,
+              })
+              .subscribe((data) => {
+                if(data[0].resp == 'Si'){
+                  this.traer_datos();
+                }else{
+                  alert("Existen problemas con los datos ingresados, valida que el codigo es correcto y que no se ha realizado pesaje anteriormente.")
+                }
+              });
       });
+      }else{
+        alert("Existen problemas con los datos ingresados, valida que el codigo es correcto y que no se ha realizado pesaje anteriormente.")
+      }
+    });
   }
 
   traer_datos() {
